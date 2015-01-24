@@ -1,18 +1,14 @@
 package com.event.esport.personnal.esport_event;
 
-import android.os.AsyncTask;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-
-import org.jsoup.*;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * Created by Francois on 24/01/2015.
+ * @Author François Hallereau
+ * @Date 24/01/2015
  */
 public class Match{
 
@@ -89,27 +85,22 @@ public class Match{
     }
 
     private void setLive(String strdate){
-        String strlive = strdate.substring(strdate.lastIndexOf(" ") + 1);
-        if(strlive.equals("LIVE")){
-            live = true;
-        }
-        else{
-            live = false;
-        }
+        live=strdate.contains("LIVE");
     }
 
+    public String toString(){
+        return "Match in "+date+",at "+event+", "+team1+" vs "+team2+", bet: "+percent1+" | "+percent2;
+    }
 
     public static ArrayList<Match> getListofMatch(int game){
-        ArrayList<Match> matchs = new ArrayList<Match>();
+        ArrayList<Match> matchs = new ArrayList<>();
         Document doc=null;
         DownloadTask task = new DownloadTask();
         if(game==1) {
             task.execute("http://dota2lounge.com/");
             try {
                 doc = task.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -117,9 +108,7 @@ public class Match{
             task.execute("http://csgolounge.com/");
             try {
                 doc = task.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -133,20 +122,22 @@ public class Match{
 
         for(Element e : elements){
             Match match = new Match();
-            match.setDate(e.getElementsByClass("whenm").first().text());
+            String strdate = e.getElementsByClass("whenm").first().text();
+            strdate = strdate.substring(0,strdate.length()-2);
+            match.setDate(strdate);
             match.setEvent(e.getElementsByClass("eventm").first().text());
 
             Elements team =e.getElementsByClass("teamtext");
             String teamtext = team.first().text();
             String teamname = teamtext.substring(0, teamtext.length() - 4);
-            String teampercent = teamtext.substring(teamtext.length()-3,teamtext.length()-1);
+            String teampercent = teamtext.substring(teamtext.length()-3);
             match.setTeam1(teamname);
             match.setPercent1(teampercent);
 
 
             teamtext = team.last().text();
             teamname = teamtext.substring(0, teamtext.length() - 4);
-            teampercent = teamtext.substring(teamtext.length()-3,teamtext.length()-1);
+            teampercent = teamtext.substring(teamtext.length()-3);
             match.setTeam2(teamname);
             match.setPercent2(teampercent);
 

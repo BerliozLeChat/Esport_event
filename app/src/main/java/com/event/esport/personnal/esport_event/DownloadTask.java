@@ -1,14 +1,13 @@
 package com.event.esport.personnal.esport_event;
 
 import android.os.AsyncTask;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
 import java.io.IOException;
 
 /**
- * Created by Francois on 24/01/2015.
+ * @Author François Hallereau
+ * @Date 24/01/2015
  */
 class DownloadTask extends AsyncTask<String,Integer,Document> {
 

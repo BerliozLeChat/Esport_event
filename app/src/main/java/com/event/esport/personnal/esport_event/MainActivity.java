@@ -5,23 +5,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
+/**
+ * @Author François Hallereau
+ * @Date 24/01/2015
+ */
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -141,12 +139,8 @@ public class MainActivity extends ActionBarActivity
             ArrayList<Match> matchs = Match.getListofMatch(getArguments().getInt(ARG_SECTION_NUMBER));
             ListAdapter monAdapter = new ListAdapter(this.getActivity(), R.layout.row, matchs);
             list.setAdapter(monAdapter);
-/*
-            if(matchs == null)
-                Toast.makeText(this.getActivity(),"null",Toast.LENGTH_SHORT);
-            else
-                Toast.makeText(this.getActivity(),matchs.size(),Toast.LENGTH_SHORT);
-*/
+            Log.d("Match", matchs.get(0).toString());
+
             return rootView;
         }
 

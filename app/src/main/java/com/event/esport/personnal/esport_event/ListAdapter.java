@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
-public class ListAdapter extends ArrayAdapter<Match> {
+/**
+ * @Author François Hallereau
+ * @Date 24/01/2015
+ */
 
-    public ListAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
-    }
+public class ListAdapter extends ArrayAdapter<Match> {
 
     public ListAdapter(Context context, int resource, ArrayList<Match> items) {
         super(context, resource, items);
