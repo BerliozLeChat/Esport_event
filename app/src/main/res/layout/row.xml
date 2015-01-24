@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/timeplace"
         android:layout_alignParentLeft="true"
         android:orientation="vertical"
@@ -13,51 +13,61 @@
 
         <ImageView
             android:id="@+id/live"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"/>
 
         <TextView
             android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/live"/>
 
         <TextView
             android:id="@+id/event"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"/>
 
-    </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@id/timeplace">
+
 
         <TextView
         android:id="@+id/team1"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/date"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"/>
 
         <TextView
             android:id="@+id/team2"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="5dp"/>
 
         <TextView
             android:id="@+id/percent1"
-            android:layout_alignBottom="@id/team1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/team1"
+            android:layout_alignLeft="@id/team1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:id="@+id/percent2"
-            android:layout_alignBottom="@id/team2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/team2"
+            android:layout_alignLeft="@id/team2"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"/>
 
     </RelativeLayout>
 
