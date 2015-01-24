@@ -6,5 +6,6 @@
     <string name="title_section2">Counter Strike GO</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="error">An error occurred while processing your request</string>
 
 </resources>

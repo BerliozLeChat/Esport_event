@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 /**
@@ -136,11 +137,20 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             ListView list = (ListView) rootView.findViewById(R.id.event_list);
-            ArrayList<Match> matchs = Match.getListofMatch(getArguments().getInt(ARG_SECTION_NUMBER));
-            ListAdapter monAdapter = new ListAdapter(this.getActivity(), R.layout.row, matchs);
-            list.setAdapter(monAdapter);
-            Log.d("Match", matchs.get(0).toString());
+            TextView error = (TextView) rootView.findViewById(R.id.error);
+            ArrayList<Match> matchs = Match.getListofMatch(getArguments().getInt(ARG_SECTION_NUMBER),this.getActivity());
+            if(matchs==null || matchs.isEmpty()){
+                error.setVisibility(View.VISIBLE);
+                list.setVisibility(View.GONE);
+                error.setText(R.string.error);
 
+            }
+            else {
+                error.setVisibility(View.GONE);
+                list.setVisibility(View.VISIBLE);
+                ListAdapter monAdapter = new ListAdapter(this.getActivity(), R.layout.row, matchs);
+                list.setAdapter(monAdapter);
+            }
             return rootView;
         }
 

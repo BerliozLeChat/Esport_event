@@ -1,5 +1,7 @@
 package com.event.esport.personnal.esport_event;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import org.jsoup.nodes.Document;
@@ -92,10 +94,10 @@ public class Match{
         return "Match in "+date+",at "+event+", "+team1+" vs "+team2+", bet: "+percent1+" | "+percent2;
     }
 
-    public static ArrayList<Match> getListofMatch(int game){
+    public static ArrayList<Match> getListofMatch(int game,Context context){
         ArrayList<Match> matchs = new ArrayList<>();
         Document doc=null;
-        DownloadTask task = new DownloadTask();
+        DownloadTask task = new DownloadTask(context);
         if(game==1) {
             task.execute("http://dota2lounge.com/");
             try {
